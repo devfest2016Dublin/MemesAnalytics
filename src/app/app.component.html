@@ -3,6 +3,9 @@
   <div class="mdl-textfield mdl-js-textfield">
     <input class="mdl-textfield__input" type="file" id="imageFile" accept="image/*" (change)="onImageChange($event)" />
   </div>
+  <div>
+    <img [src]="imageBase64" />
+  </div>
 
   <ul class="demo-list-two mdl-list">
     <li class="mdl-list__item mdl-list__item--two-line" *ngFor="let labelAnnotation of labelAnnotations | async">
