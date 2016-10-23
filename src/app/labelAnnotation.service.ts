@@ -2,6 +2,7 @@ import { Injectable} from '@angular/core';
 import { Http, Headers, Response, RequestOptions} from '@angular/http';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
 import { Observable } from 'rxjs';
+import 'rxjs/Rx';
 import { VisionAnnotations, LabelAnnotation, TextAnnotation } from './labelAnnotation';
 
 export const LABEL_ANNOTATIONS: LabelAnnotation[] = [
