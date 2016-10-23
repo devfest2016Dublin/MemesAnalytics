@@ -5,7 +5,7 @@
   </div>
 
   <ul class="demo-list-two mdl-list">
-    <li class="mdl-list__item mdl-list__item--two-line" *ngFor="let labelAnnotation of labelAnnotations | async">
+    <li class="mdl-list__item mdl-list__item--two-line" *ngFor="let labelAnnotation of visionAnnotations.labelAnnotations">
       <span class="mdl-list__item-primary-content">
       <i class="material-icons mdl-list__item-icon">check</i>
       <span>{{labelAnnotation.description}}</span>

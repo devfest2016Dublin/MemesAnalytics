@@ -2,7 +2,7 @@ import { Injectable} from '@angular/core';
 import { Http, Headers, Response, RequestOptions} from '@angular/http';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
 import { Observable } from 'rxjs';
-import { LabelAnnotation } from './labelAnnotation';
+import { VisionAnnotations, LabelAnnotation, TextAnnotation } from './labelAnnotation';
 
 export const LABEL_ANNOTATIONS: LabelAnnotation[] = [
   {mid: "1234", description: "House", score:99.99},
@@ -12,7 +12,7 @@ export const LABEL_ANNOTATIONS: LabelAnnotation[] = [
 
 
 @Injectable()
-export class LabelAnnotationService {
+export class VisionAnnotationService {
 
   url : string = "https://vision.googleapis.com/v1/images:annotate?key=";
 
@@ -20,7 +20,7 @@ export class LabelAnnotationService {
 
   constructor(private http: Http) {}
 
-  getLabelAnnotations(apiKey: string, photoBase64: string): Observable<LabelAnnotation[]> {
+  getVisionAnnotations(apiKey: string, photoBase64: string): Observable<VisionAnnotations> {
 
     let request = {
         "requests": [
@@ -29,6 +29,10 @@ export class LabelAnnotationService {
                     {
                         "maxResults": 10,
                         "type": "LABEL_DETECTION"
+                    },
+                    {
+                        "type":"TEXT_DETECTION",
+                        "maxResults":10
                     }
                 ],
                 "image": {
@@ -43,6 +47,6 @@ export class LabelAnnotationService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.post(this.url + apiKey, body, options)
-               .map((r: Response) => r.json().responses[0].labelAnnotations as LabelAnnotation[]);
+               .map((r: Response) => r.json().responses[0] as VisionAnnotations);
   }
 }
