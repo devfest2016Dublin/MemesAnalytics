@@ -22,6 +22,7 @@ export class AppComponent {
   labelAnnotations: LabelAnnotation[];
   textAnnotations: TextAnnotation[];
   apiKey : string;
+  imageBase64 : string = "https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_add_a_photo_black_24px.svg";
 
   items: FirebaseListObservable<any[]>;
   constructor(private visionAnnotationService : VisionAnnotationService, private af: AngularFire) {
@@ -55,8 +56,8 @@ export class AppComponent {
     reader.addEventListener("load", e => {
 
       // Keep only the base64
-      let imageBase64 =reader.result.split(",")[1];
-      this.getVisionAnnotations(imageBase64);
+      this.imageBase64 = reader.result;
+      this.getVisionAnnotations(this.imageBase64.split(",")[1]);
     }, false);
 
     let file = event.srcElement.files[0];
