@@ -15,4 +15,3 @@ export class VisionAnnotations {
   textAnnotations: TextAnnotation[];
 }
 
-

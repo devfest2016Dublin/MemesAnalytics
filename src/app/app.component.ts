@@ -1,7 +1,7 @@
 import { Component, Inject} from '@angular/core';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
 import { Observable } from 'rxjs';
-import { VisionAnnotations, LabelAnnotation, TextAnnotation } from './labelAnnotation';
+import { VisionAnnotations, LabelAnnotation, TextAnnotation} from './labelAnnotation';
 import { VisionAnnotationService } from './labelAnnotation.service';
 
 
@@ -41,7 +41,7 @@ export class AppComponent {
     this.visionAnnotationService.getVisionAnnotations(this.apiKey, imageBase64).subscribe(
           value => {
               this.visionAnnotations = value;
-              console.log(JSON.stringify(this.visionAnnotations));
+              this.visionAnnotations.textAnnotations = [this.visionAnnotations.textAnnotations[0]];
           }
     );
     this.labelAnnotations = this.visionAnnotations.labelAnnotations;
