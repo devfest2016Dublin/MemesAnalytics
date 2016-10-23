@@ -1,0 +1,29 @@
+
+<div>
+  <div class="mdl-textfield mdl-js-textfield">
+    <input class="mdl-textfield__input" type="file" id="imageFile" accept="image/*" (change)="onImageChange($event)" />
+  </div>
+
+  <ul class="demo-list-two mdl-list">
+    <li class="mdl-list__item mdl-list__item--two-line" *ngFor="let labelAnnotation of labelAnnotations | async">
+      <span class="mdl-list__item-primary-content">
+      <i class="material-icons mdl-list__item-icon">check</i>
+      <span>{{labelAnnotation.description}}</span>
+      <span class="mdl-list__item-sub-title">{{labelAnnotation.score}}</span>
+      </span>
+      <span class="mdl-list__item-secondary-content" [class.hidden] = "labelAnnotation.score < 0.8" >
+      <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
+    </span>
+    </li>
+  </ul>
+
+  <ul class="demo-list-icon mdl-list">
+    <li class="mdl-list__item" *ngFor="let item of items | async">
+      <span class="mdl-list__item-primary-content">
+      <i class="material-icons mdl-list__item-icon">storage</i>
+      {{item.$value}}
+      </span>
+    </li>
+  </ul>
+</div>
+
